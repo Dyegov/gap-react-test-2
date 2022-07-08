@@ -1,31 +1,22 @@
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { toTitleCase } from '../../utils/toTitleCase'
+import PokemonImage from '../../components/PokemonImage'
+import TypesList from '../TypesList'
+import PokemonId from '../PokemonId'
 import './PokemonCard.scss'
 
 const PokemonCard = ({ pokemon }) => {
   return (
-    <Link to={`/${pokemon.id}`}>
+    <Link to={`/${pokemon.id}`} state={{ pokemon }}>
       <div className={`card ${pokemon.types[0].type.name}`}>
         <div className='header'>
           <div className='name'>{toTitleCase(pokemon.name)}</div>
-          <div className='number'>
-            {pokemon.id.toString().length === 1
-              ? `#00${pokemon.id}`
-              : pokemon.id.toString().length === 2
-              ? `#0${pokemon.id}`
-              : `#${pokemon.id}`}
-          </div>
+          <PokemonId id={pokemon.id} />
         </div>
         <div className='body'>
-          <div className='types'>
-            {pokemon.types.map((entry) => (
-              <li key={entry.slot}>{toTitleCase(entry.type.name)}</li>
-            ))}
-          </div>
-          <div className='image'>
-            <img src={pokemon?.sprites?.other['official-artwork']['front_default']} width='80' />
-          </div>
+          <TypesList types={pokemon.types} />
+          <PokemonImage src={pokemon?.sprites?.other['official-artwork']['front_default']} />
         </div>
       </div>
     </Link>
@@ -33,7 +24,7 @@ const PokemonCard = ({ pokemon }) => {
 }
 
 PokemonCard.propTypes = {
-  pokemon: PropTypes.array.isRequired,
+  pokemon: PropTypes.object.isRequired,
 }
 
 export default PokemonCard

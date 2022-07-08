@@ -1,0 +1,61 @@
+@use '../../styles/colors.scss' as *;
+
+.page {
+  display: grid;
+  justify-content: center;
+  .header {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: min-content;
+    padding-top: 2rem;
+    padding-inline: 1rem;
+    .name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .types {
+      display: flex;
+      gap: 0.2rem;
+      li {
+        list-style: none;
+        background-color: rgba(255, 255, 255, 0.2);
+        width: 4rem;
+        text-align: center;
+        padding: 0.2rem 0;
+        border-radius: 0.6rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+    }
+    .number {
+      font-weight: bold;
+    }
+  }
+  .image {
+    padding-inline: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }
+  .info {
+    background-color: white;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding-top: 2.6rem;
+    padding-inline: 1rem;
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      button {
+        border: none;
+        background-color: white;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

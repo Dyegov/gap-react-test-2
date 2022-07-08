@@ -1,4 +1,5 @@
 // Type Colors
+$fairy: #aaaa99;
 $normal: #aaaa99;
 $fire: #ec4126;
 $water: #4e9aff;
@@ -14,3 +15,68 @@ $bug: #a9bb23;
 $rock: #bbaa66;
 $ghost: #6667bc;
 $dragon: #7768ee;
+
+// helping classes
+.fairy {
+  background-color: $fairy;
+}
+
+.normal {
+  background-color: $normal;
+}
+
+.fire {
+  background-color: $fire;
+}
+
+.water {
+  background-color: $water;
+}
+
+.electric {
+  background-color: $electric;
+}
+
+.grass {
+  background-color: $grass;
+}
+
+.ice {
+  background-color: $ice;
+}
+
+.fighting {
+  background-color: $fighting;
+}
+
+.poison {
+  background-color: $poison;
+}
+
+.ground {
+  background-color: $ground;
+}
+
+.flying {
+  background-color: $flying;
+}
+
+.psychic {
+  background-color: $psychic;
+}
+
+.bug {
+  background-color: $bug;
+}
+
+.rock {
+  background-color: $rock;
+}
+
+.ghost {
+  background-color: $ghost;
+}
+
+.dragon {
+  background-color: $dragon;
+}

@@ -1,29 +1,92 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import PokemonImage from '../../components/PokemonImage'
+import TypesList from '../../components/TypesList'
+import PokemonId from '../../components/PokemonId'
+import { toTitleCase } from '../../utils/toTitleCase'
+import './PokemonPage.scss'
 
 const PokemonPage = () => {
-  const { id } = useParams()
+  const location = useLocation()
+  const pokemon = location.state.pokemon
+  const [currentTab, setCurrentTab] = useState('about')
 
-  const [pokemon, setPokemon] = useState({})
+  let currentContent
 
-  useEffect(() => {
-    const wrapper = async () => {
-      const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      setPokemon(result.data)
-    }
-    wrapper()
-  }, [])
-
-  console.log(pokemon)
+  if (currentTab === 'about') {
+    currentContent = (
+      <table>
+        <tbody>
+          <tr>
+            <td>Height</td>
+            <td>{pokemon.height}</td>
+          </tr>
+          <tr>
+            <td>Weight</td>
+            <td>{pokemon.weight}</td>
+          </tr>
+          <tr>
+            <td>Abilties</td>
+            <td>
+              {pokemon?.abilities?.map((entry) => toTitleCase(entry.ability.name)).join(', ')}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    )
+  } else if (currentTab === 'stats') {
+    currentContent = (
+      <table>
+        <tbody>
+          {pokemon.stats.map((entry, i) => (
+            <tr key={i}>
+              <td>{toTitleCase(entry.stat.name)}</td>
+              <td>{entry.base_stat}</td>
+              <td>{entry.base_stat}/100</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
+  } else {
+    currentContent = (
+      <table>
+        <tbody>
+          {pokemon.moves
+            .filter((entry) => entry.version_group_details[0].level_learned_at !== 0)
+            .map((entry, i) => (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>{toTitleCase(entry.move.name)}</td>
+                <td>{entry.version_group_details[0].level_learned_at}</td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    )
+  }
 
   return (
-    <div>
-      <div>Pokemon {id}</div>
-      <div>Types</div>
-      {pokemon?.types?.map((entry) => (
-        <li key={entry.slot}>{entry.type.name}</li>
-      ))}
+    <div className={`page ${pokemon.types[0].type.name}`}>
+      <div className='header'>
+        <div className='name-types'>
+          <div className='name'>{toTitleCase(pokemon.name)}</div>
+          <TypesList types={pokemon.types} />
+        </div>
+        <PokemonId id={pokemon.id} />
+      </div>
+      <PokemonImage
+        src={pokemon?.sprites?.other['official-artwork']['front_default']}
+        width='250'
+      />
+      <div className='info'>
+        <div className='navbar'>
+          <button onClick={() => setCurrentTab('about')}>About</button>
+          <button onClick={() => setCurrentTab('stats')}>Base Stats</button>
+          <button onClick={() => setCurrentTab('moves')}>Moves</button>
+        </div>
+        <div className='details'>{currentContent}</div>
+      </div>
     </div>
   )
 }
