@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import PokemonImage from '../../components/PokemonImage'
 import TypesList from '../../components/TypesList'
@@ -8,12 +8,22 @@ import { toTitleCase } from '../../utils/toTitleCase'
 import './PokemonPage.scss'
 
 const PokemonPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  const navigate = useNavigate()
+
   const { id } = useParams()
   const pokemonList = useSelector((state) => state.pokemon.pokemon)
   const pokemon = pokemonList.find((entry) => entry.id === Number(id))
+  const [favorite, setFavorite] = useState(pokemon.favorite)
   const maxStat = pokemon.stats.map((entry) => entry.base_stat).reduce((a, b) => Math.max(a, b))
-
   const [currentTab, setCurrentTab] = useState('about')
+
+  const toggleFavorite = () => {
+    setFavorite(!favorite)
+  }
 
   let currentContent
 
@@ -93,6 +103,14 @@ const PokemonPage = () => {
 
   return (
     <div className={`page ${pokemon.types[0].type.name}`}>
+      <div className='menu'>
+        <img className='back' src='/back.svg' onClick={() => navigate(-1)} />
+        {favorite ? (
+          <img className='favorite' src='/favorite-active.svg' onClick={toggleFavorite} />
+        ) : (
+          <img className='favorite' src='/favorite.svg' onClick={toggleFavorite} />
+        )}
+      </div>
       <div className='header'>
         <div className='name-types'>
           <div className='name'>{toTitleCase(pokemon.name)}</div>
