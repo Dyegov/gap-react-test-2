@@ -90,7 +90,8 @@
 
 .page::before {
   content: '';
-  background-image: url('../../../pokeball.jpeg');
+  background-image: url('../../../public/pokeball.jpeg');
+  background-size: 2%;
   clip-path: inset(0 2rem 0 0);
   background-size: 90%;
   background-repeat: no-repeat;
