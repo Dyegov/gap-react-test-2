@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 import { toTitleCase } from '../../utils/toTitleCase'
 import PokemonImage from '../../components/PokemonImage'
@@ -6,7 +7,10 @@ import TypesList from '../TypesList'
 import PokemonId from '../PokemonId'
 import './PokemonCard.scss'
 
-const PokemonCard = ({ pokemon }) => {
+const PokemonCard = ({ id }) => {
+  const pokemonList = useSelector((state) => state.pokemon.pokemon)
+  const pokemon = pokemonList.find((entry) => entry.id === id)
+
   return (
     <Link to={`/${pokemon.id}`} state={{ pokemon }}>
       <div className={`card ${pokemon.types[0].type.name}`}>
@@ -24,7 +28,7 @@ const PokemonCard = ({ pokemon }) => {
 }
 
 PokemonCard.propTypes = {
-  pokemon: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
 }
 
 export default PokemonCard

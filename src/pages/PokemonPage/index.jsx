@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import PokemonImage from '../../components/PokemonImage'
 import TypesList from '../../components/TypesList'
 import PokemonId from '../../components/PokemonId'
@@ -7,8 +9,13 @@ import { toTitleCase } from '../../utils/toTitleCase'
 import './PokemonPage.scss'
 
 const PokemonPage = () => {
-  const location = useLocation()
-  const pokemon = location.state.pokemon
+  // const location = useLocation()
+  // const pokemon = location.state.pokemon
+
+  const { id } = useParams()
+  const pokemonList = useSelector((state) => state.pokemon.pokemon)
+  const pokemon = pokemonList.find((entry) => entry.id === Number(id))
+
   const [currentTab, setCurrentTab] = useState('about')
 
   // const percent = (identifier, width) => {
