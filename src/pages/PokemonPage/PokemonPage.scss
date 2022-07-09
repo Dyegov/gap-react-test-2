@@ -81,16 +81,9 @@
         }
       }
     }
-    .totalBar {
-      width: 100%;
-      background-color: gray;
-      text-align: center;
-      .myBar {
-        width: 0;
-        height: 1rem;
-        background-color: greenyellow;
-        color: white;
-      }
+    meter {
+      width: 6.4rem;
+      margin-left: 1.8rem;
     }
   }
 }
@@ -107,4 +100,36 @@
   bottom: 0px;
   left: 14rem;
   opacity: 0.2;
+}
+th {
+  font-size: 0.9rem;
+  text-align: left;
+}
+td {
+  padding: 0.2rem 0;
+}
+td:first-child {
+  color: gray;
+  width: 6rem;
+}
+table.stats {
+  td:first-child {
+    width: 8rem;
+  }
+}
+table.moves {
+  td:first-child {
+    color: black;
+    width: fit-content;
+  }
+  td:nth-child(2) {
+    color: gray;
+    width: 6rem;
+  }
+  th:nth-child(3) {
+    text-align: center;
+  }
+  td:nth-child(3) {
+    text-align: center;
+  }
 }

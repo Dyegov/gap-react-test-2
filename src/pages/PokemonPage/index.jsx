@@ -1,5 +1,4 @@
 import { useState } from 'react'
-// import { useLocation } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import PokemonImage from '../../components/PokemonImage'
@@ -9,12 +8,10 @@ import { toTitleCase } from '../../utils/toTitleCase'
 import './PokemonPage.scss'
 
 const PokemonPage = () => {
-  // const location = useLocation()
-  // const pokemon = location.state.pokemon
-
   const { id } = useParams()
   const pokemonList = useSelector((state) => state.pokemon.pokemon)
   const pokemon = pokemonList.find((entry) => entry.id === Number(id))
+  const maxStat = pokemon.stats.map((entry) => entry.base_stat).reduce((a, b) => Math.max(a, b))
 
   const [currentTab, setCurrentTab] = useState('about')
 
@@ -49,26 +46,48 @@ const PokemonPage = () => {
     )
   } else if (currentTab === 'stats') {
     currentContent = (
-      <table>
+      <table className='stats'>
         <tbody>
           {pokemon.stats.map((entry, i) => (
             <tr key={i}>
               <td>{toTitleCase(entry.stat.name)}</td>
               <td>{entry.base_stat}</td>
-              <td className='totalBar'>
+              {/* <td className='totalBar'>
                 <div className='myBar' style={{ width: `${entry.base_stat}%` }}></div>
+              </td> */}
+              <td>
+                <meter
+                  value={entry.base_stat}
+                  min='0'
+                  max={maxStat}
+                  low={(maxStat * 20) / 100}
+                  high={(maxStat * 50) / 100}
+                  optimum={(maxStat * 80) / 100}
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
     )
-  } else {
+  } else if (currentTab === 'moves') {
     currentContent = (
-      <table>
+      <table className='moves'>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Move</th>
+            <th>Lvl Learned</th>
+          </tr>
+        </thead>
         <tbody>
           {pokemon.moves
             .filter((entry) => entry.version_group_details[0].level_learned_at !== 0)
+            .sort(
+              (a, b) =>
+                a.version_group_details[0].level_learned_at -
+                b.version_group_details[0].level_learned_at
+            )
             .map((entry, i) => (
               <tr key={i}>
                 <td>{i + 1}</td>
