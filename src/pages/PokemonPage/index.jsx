@@ -11,6 +11,12 @@ const PokemonPage = () => {
   const pokemon = location.state.pokemon
   const [currentTab, setCurrentTab] = useState('about')
 
+  // const percent = (identifier, width) => {
+  //   const elem = document?.querySelector(`.${identifier}`)
+  //   // elem.style.width = width + '%'
+  //   console.log(elem.value)
+  // }
+
   let currentContent
 
   if (currentTab === 'about') {
@@ -42,7 +48,9 @@ const PokemonPage = () => {
             <tr key={i}>
               <td>{toTitleCase(entry.stat.name)}</td>
               <td>{entry.base_stat}</td>
-              <td>{entry.base_stat}/100</td>
+              <td className='totalBar'>
+                <div className='myBar' style={{ width: `${entry.base_stat}%` }}></div>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -74,6 +82,7 @@ const PokemonPage = () => {
           <TypesList types={pokemon.types} />
         </div>
         <PokemonId id={pokemon.id} />
+        <img className='svg' src='blob.svg' />
       </div>
       <PokemonImage
         src={pokemon?.sprites?.other['official-artwork']['front_default']}
@@ -81,9 +90,24 @@ const PokemonPage = () => {
       />
       <div className='info'>
         <div className='navbar'>
-          <button onClick={() => setCurrentTab('about')}>About</button>
-          <button onClick={() => setCurrentTab('stats')}>Base Stats</button>
-          <button onClick={() => setCurrentTab('moves')}>Moves</button>
+          <button
+            className={currentTab === 'about' && 'active'}
+            onClick={() => setCurrentTab('about')}
+          >
+            About
+          </button>
+          <button
+            className={currentTab === 'stats' && 'active'}
+            onClick={() => setCurrentTab('stats')}
+          >
+            Base Stats
+          </button>
+          <button
+            className={currentTab === 'moves' && 'active'}
+            onClick={() => setCurrentTab('moves')}
+          >
+            Moves
+          </button>
         </div>
         <div className='details'>{currentContent}</div>
       </div>

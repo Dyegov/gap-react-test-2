@@ -4,6 +4,7 @@
   display: grid;
   justify-content: center;
   .header {
+    position: relative;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -33,6 +34,16 @@
     .number {
       font-weight: bold;
     }
+    .svg {
+      position: absolute;
+      top: -10rem;
+      right: 0px;
+      bottom: 0px;
+      left: -10rem;
+      clip-path: inset(10rem 0 0 10rem);
+      filter: brightness(0) invert(1);
+      opacity: 0.1;
+    }
   }
   .image {
     padding-inline: 1rem;
@@ -40,8 +51,11 @@
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+    z-index: 10;
   }
   .info {
+    margin-top: -2.3rem;
+    z-index: 9;
     background-color: white;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
@@ -54,8 +68,43 @@
         border: none;
         background-color: white;
         font-weight: bold;
-        margin-bottom: 1rem;
+        margin-bottom: 1.8rem;
+        position: relative;
+        &.active::after {
+          position: absolute;
+          content: '';
+          border-bottom: 1.5px solid $dragon;
+          width: 100%;
+          transform: translateX(-50%);
+          bottom: -0.8rem;
+          left: 50%;
+        }
+      }
+    }
+    .totalBar {
+      width: 100%;
+      background-color: gray;
+      text-align: center;
+      .myBar {
+        width: 0;
+        height: 1rem;
+        background-color: greenyellow;
+        color: white;
       }
     }
   }
+}
+
+.page::before {
+  content: '';
+  background-image: url('../../../pokeball.jpeg');
+  clip-path: inset(0 2rem 0 0);
+  background-size: 90%;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 8rem;
+  right: 0px;
+  bottom: 0px;
+  left: 14rem;
+  opacity: 0.2;
 }
