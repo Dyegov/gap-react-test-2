@@ -98,19 +98,19 @@ const PokemonPage = () => {
       <div className='info'>
         <div className='navbar'>
           <button
-            className={currentTab === 'about' && 'active'}
+            className={currentTab === 'about' ? 'active' : ''}
             onClick={() => setCurrentTab('about')}
           >
             About
           </button>
           <button
-            className={currentTab === 'stats' && 'active'}
+            className={currentTab === 'stats' ? 'active' : ''}
             onClick={() => setCurrentTab('stats')}
           >
             Base Stats
           </button>
           <button
-            className={currentTab === 'moves' && 'active'}
+            className={currentTab === 'moves' ? 'active' : ''}
             onClick={() => setCurrentTab('moves')}
           >
             Moves
