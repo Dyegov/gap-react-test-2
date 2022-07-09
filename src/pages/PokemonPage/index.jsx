@@ -15,12 +15,6 @@ const PokemonPage = () => {
 
   const [currentTab, setCurrentTab] = useState('about')
 
-  // const percent = (identifier, width) => {
-  //   const elem = document?.querySelector(`.${identifier}`)
-  //   // elem.style.width = width + '%'
-  //   console.log(elem.value)
-  // }
-
   let currentContent
 
   if (currentTab === 'about') {
@@ -52,9 +46,6 @@ const PokemonPage = () => {
             <tr key={i}>
               <td>{toTitleCase(entry.stat.name)}</td>
               <td>{entry.base_stat}</td>
-              {/* <td className='totalBar'>
-                <div className='myBar' style={{ width: `${entry.base_stat}%` }}></div>
-              </td> */}
               <td>
                 <meter
                   value={entry.base_stat}
