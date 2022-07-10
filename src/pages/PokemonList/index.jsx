@@ -11,6 +11,7 @@ const PokemonList = () => {
 
   const toggleFilter = () => {
     setIsVisible(!isVisible)
+    window.scrollTo(0, 0)
     setFilterValue('')
   }
 
@@ -21,7 +22,7 @@ const PokemonList = () => {
       <div>{isVisible && <Filter onChange={(e) => setFilterValue(e.target.value)} />}</div>
       <div className='list'>
         {pokemonList
-          ?.filter((pokemon) => pokemon.name.includes(filterValue))
+          ?.filter((pokemon) => pokemon.name.includes(filterValue.toLowerCase().trim()))
           ?.map((pokemon) => (
             <PokemonCard key={pokemon.id} id={pokemon.id} />
           ))}
