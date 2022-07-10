@@ -18,7 +18,8 @@ const App = () => {
         allPokemon.push(pokemon.data)
       }
       dispatch(init(allPokemon))
-      const favorites = Object.keys(localStorage)
+      const local = Object.keys(localStorage)
+      const favorites = local.map((entry) => Number(entry))
       dispatch(loadFavorites(favorites))
     }
     fetchPokemon()

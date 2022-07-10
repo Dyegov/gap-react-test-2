@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PokemonImage from '../../components/PokemonImage'
 import TypesList from '../../components/TypesList'
 import PokemonId from '../../components/PokemonId'
+import Back from '../../components/Back'
 import { toTitleCase } from '../../utils/toTitleCase'
 import { addFavorite, removeFavorite } from '../../state/slices/pokemonSlice'
 import './PokemonPage.scss'
@@ -11,7 +12,7 @@ import './PokemonPage.scss'
 const PokemonPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
-    if (favorites.includes(id)) setFavorite(true)
+    if (favorites.includes(Number(id))) setFavorite(true)
   }, [])
 
   const dispatch = useDispatch()
@@ -115,7 +116,7 @@ const PokemonPage = () => {
   return (
     <div className={`page ${pokemon.types[0].type.name}`}>
       <div className='menu'>
-        <img className='back' src='/back.svg' onClick={() => navigate(-1)} />
+        <Back onClick={() => navigate(-1)} />
         {favorite ? (
           <img className='favorite' src='/favorite-active.svg' onClick={toggleFavorite} />
         ) : (

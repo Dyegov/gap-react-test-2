@@ -1,3 +1,4 @@
+@use '../../styles/main.scss' as *;
 @use '../../styles/colors.scss' as *;
 
 .filter {
@@ -8,11 +9,8 @@
     margin: 1rem 0;
     width: 100%;
     border: none;
-    background-color: $search-bar;
+    background-color: $gray;
     padding: 0.7rem 1.2rem;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    @include border-radius;
   }
 }

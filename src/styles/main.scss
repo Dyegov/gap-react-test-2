@@ -17,3 +17,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+@mixin border-radius {
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}

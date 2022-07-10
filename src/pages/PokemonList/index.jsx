@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+// import { Link } from 'react-router-dom'
 import PokemonCard from '../../components/PokemonCard'
 import Filter from '../../components/Filter'
 import './PokemonList.scss'
 
 const PokemonList = () => {
   const pokemonList = useSelector((state) => state.pokemon.pokemon)
-  const [isVisible, setIsVisible] = useState(false)
+  const favorites = useSelector((state) => state.pokemon.favorites)
+  const favoritePokemon = pokemonList.filter((pokemon) => favorites.includes(pokemon.id))
+  const [isFilterVisible, setIsFilterVisible] = useState(false)
   const [filterValue, setFilterValue] = useState('')
+  const [isFavoritesVisible, setIsFavoritesVisible] = useState(false)
 
   const toggleFilter = () => {
-    setIsVisible(!isVisible)
+    setIsFilterVisible(!isFilterVisible)
     window.scrollTo(0, 0)
     setFilterValue('')
   }
@@ -18,19 +22,42 @@ const PokemonList = () => {
   if (pokemonList.length === 0) return <div>Loading...</div>
 
   return (
-    <>
-      <div>{isVisible && <Filter onChange={(e) => setFilterValue(e.target.value)} />}</div>
+    <div className='listPage'>
+      <div className='menu'>
+        {isFavoritesVisible ? (
+          <img
+            className='favorite'
+            src='/favorite-active.svg'
+            onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}
+          />
+        ) : (
+          <img
+            className='favorite'
+            src='/favorite.svg'
+            onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}
+          />
+        )}
+      </div>
+      <div className='title'>
+        {isFilterVisible ? (
+          <Filter onChange={(e) => setFilterValue(e.target.value)} />
+        ) : isFavoritesVisible ? (
+          <h2>Favorites</h2>
+        ) : (
+          <h2>Pokedex</h2>
+        )}
+      </div>
       <div className='list'>
-        {pokemonList
-          ?.filter((pokemon) => pokemon.name.includes(filterValue.toLowerCase().trim()))
-          ?.map((pokemon) => (
-            <PokemonCard key={pokemon.id} id={pokemon.id} />
-          ))}
+        {isFavoritesVisible
+          ? favoritePokemon.map((pokemon) => <PokemonCard key={pokemon.id} id={pokemon.id} />)
+          : pokemonList
+              ?.filter((pokemon) => pokemon.name.includes(filterValue.toLowerCase().trim()))
+              ?.map((pokemon) => <PokemonCard key={pokemon.id} id={pokemon.id} />)}
       </div>
       <div className='filter-icon'>
         <img src='/filter.png' onClick={toggleFilter} />
       </div>
-    </>
+    </div>
   )
 }
 

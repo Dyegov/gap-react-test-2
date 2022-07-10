@@ -1,4 +1,46 @@
+@use '../../styles/main.scss' as *;
 @use '../../styles/colors.scss' as *;
+
+a {
+  color: black;
+}
+
+.listPage::before {
+  content: '';
+  background-image: url('../../../public/pokeball.jpeg');
+  background-size: 50%;
+  background-repeat: no-repeat;
+  position: fixed;
+  top: -4rem;
+  right: -20rem;
+  bottom: 0rem;
+  left: 14.1rem;
+  opacity: 0.2;
+}
+
+.menu {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: right;
+  img {
+    z-index: 10;
+    width: 1.2rem;
+    margin-right: 0.4rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.title {
+  margin: 2rem 0;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
 
 .filter-icon {
   z-index: 10;
@@ -21,10 +63,4 @@
     width: 1rem;
     height: 1rem;
   }
-}
-
-.list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
 }
