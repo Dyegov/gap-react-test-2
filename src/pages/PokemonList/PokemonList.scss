@@ -1,3 +1,28 @@
+@use '../../styles/colors.scss' as *;
+
+.filter-icon {
+  z-index: 10;
+  display: grid;
+  place-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  background-color: $filter;
+  margin-right: 1.7rem;
+  margin-bottom: 0.6rem;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  &:hover {
+    cursor: pointer;
+  }
+  img {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
