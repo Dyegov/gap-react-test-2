@@ -15,7 +15,9 @@ const PokemonCard = ({ id }) => {
     <Link to={`/${pokemon.id}`} state={{ pokemon }}>
       <div className={`card ${pokemon.types[0].type.name}`}>
         <div className='header'>
-          <div className='name'>{toTitleCase(pokemon.name)}</div>
+          <div className='name'>
+            {toTitleCase(pokemon.name.length > 9 ? `${pokemon.name.slice(0, 6)}...` : pokemon.name)}
+          </div>
           <PokemonId id={pokemon.id} />
         </div>
         <div className='body'>

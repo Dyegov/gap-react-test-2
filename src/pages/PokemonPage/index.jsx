@@ -10,6 +10,7 @@ import './PokemonPage.scss'
 const PokemonPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
+    if (localStorage.getItem(pokemon.id)) setFavorite(true)
   }, [])
 
   const navigate = useNavigate()
@@ -17,12 +18,18 @@ const PokemonPage = () => {
   const { id } = useParams()
   const pokemonList = useSelector((state) => state.pokemon.pokemon)
   const pokemon = pokemonList.find((entry) => entry.id === Number(id))
-  const [favorite, setFavorite] = useState(pokemon.favorite)
+  const [favorite, setFavorite] = useState(false)
   const maxStat = pokemon.stats.map((entry) => entry.base_stat).reduce((a, b) => Math.max(a, b))
   const [currentTab, setCurrentTab] = useState('about')
 
   const toggleFavorite = () => {
-    setFavorite(!favorite)
+    if (favorite === false) {
+      localStorage.setItem(pokemon.id, pokemon.id)
+      setFavorite(true)
+    } else {
+      localStorage.removeItem(pokemon.id)
+      setFavorite(false)
+    }
   }
 
   let currentContent
