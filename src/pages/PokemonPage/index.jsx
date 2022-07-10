@@ -28,12 +28,12 @@ const PokemonPage = () => {
   const [currentTab, setCurrentTab] = useState('about')
 
   const toggleFavorite = () => {
-    if (favorites.includes(id)) {
+    if (favorites.includes(Number(id))) {
       setFavorite(false)
-      dispatch(removeFavorite(id))
+      dispatch(removeFavorite(Number(id)))
     } else {
       setFavorite(true)
-      dispatch(addFavorite(id))
+      dispatch(addFavorite(Number(id)))
     }
   }
 

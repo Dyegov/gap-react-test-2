@@ -42,6 +42,16 @@ a {
   gap: 1rem;
 }
 
+.empty {
+  display: flex;
+  align-items: center;
+  color: $fire;
+  font-weight: bold;
+  img {
+    height: 6rem;
+  }
+}
+
 .filter-icon {
   z-index: 10;
   display: grid;

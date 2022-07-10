@@ -21,9 +21,8 @@ export const pokemonSlice = createSlice({
     },
     removeFavorite: (state, { payload }) => {
       localStorage.removeItem(payload)
-      const index = state.favorites.findIndex((x) => x === payload)
       const newFavorites = [...state.favorites]
-      newFavorites.splice(index, 1)
+      newFavorites.splice(state.favorites.indexOf(payload), 1)
       state.favorites = newFavorites
     },
   },

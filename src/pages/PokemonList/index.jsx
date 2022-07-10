@@ -47,13 +47,24 @@ const PokemonList = () => {
           <h2>Pokedex</h2>
         )}
       </div>
-      <div className='list'>
-        {isFavoritesVisible
-          ? favoritePokemon.map((pokemon) => <PokemonCard key={pokemon.id} id={pokemon.id} />)
-          : pokemonList
-              ?.filter((pokemon) => pokemon.name.includes(filterValue.toLowerCase().trim()))
-              ?.map((pokemon) => <PokemonCard key={pokemon.id} id={pokemon.id} />)}
-      </div>
+      {isFavoritesVisible ? (
+        favoritePokemon.length === 0 ? (
+          <div className='empty'>
+            <div>You have no favorite Pokemon yet!</div>
+            <img src='/missigno.png' />
+          </div>
+        ) : (
+          favoritePokemon.map((pokemon) => <PokemonCard key={pokemon.id} id={pokemon.id} />)
+        )
+      ) : (
+        <div className='list'>
+          {pokemonList
+            ?.filter((pokemon) => pokemon.name.includes(filterValue.toLowerCase().trim()))
+            ?.map((pokemon) => (
+              <PokemonCard key={pokemon.id} id={pokemon.id} />
+            ))}
+        </div>
+      )}
       <div className='filter-icon'>
         <img src='/filter.png' onClick={toggleFilter} />
       </div>
