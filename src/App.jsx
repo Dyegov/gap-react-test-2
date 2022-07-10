@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
-import { init } from './state/slices/pokemonSlice'
+import { init, loadFavorites } from './state/slices/pokemonSlice'
 import './styles/main.scss'
 import PokemonList from './pages/PokemonList'
 import PokemonPage from './pages/PokemonPage'
@@ -18,6 +18,8 @@ const App = () => {
         allPokemon.push(pokemon.data)
       }
       dispatch(init(allPokemon))
+      const favorites = Object.keys(localStorage)
+      dispatch(loadFavorites(favorites))
     }
     fetchPokemon()
   }, [dispatch])

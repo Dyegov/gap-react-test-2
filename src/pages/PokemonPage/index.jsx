@@ -1,34 +1,38 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import PokemonImage from '../../components/PokemonImage'
 import TypesList from '../../components/TypesList'
 import PokemonId from '../../components/PokemonId'
 import { toTitleCase } from '../../utils/toTitleCase'
+import { addFavorite, removeFavorite } from '../../state/slices/pokemonSlice'
 import './PokemonPage.scss'
 
 const PokemonPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
-    if (localStorage.getItem(pokemon.id)) setFavorite(true)
+    if (favorites.includes(id)) setFavorite(true)
   }, [])
+
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   const { id } = useParams()
   const pokemonList = useSelector((state) => state.pokemon.pokemon)
   const pokemon = pokemonList.find((entry) => entry.id === Number(id))
+  const favorites = useSelector((state) => state.pokemon.favorites)
   const [favorite, setFavorite] = useState(false)
   const maxStat = pokemon.stats.map((entry) => entry.base_stat).reduce((a, b) => Math.max(a, b))
   const [currentTab, setCurrentTab] = useState('about')
 
   const toggleFavorite = () => {
-    if (favorite === false) {
-      localStorage.setItem(pokemon.id, pokemon.id)
-      setFavorite(true)
-    } else {
-      localStorage.removeItem(pokemon.id)
+    if (favorites.includes(id)) {
       setFavorite(false)
+      dispatch(removeFavorite(id))
+    } else {
+      setFavorite(true)
+      dispatch(addFavorite(id))
     }
   }
 
