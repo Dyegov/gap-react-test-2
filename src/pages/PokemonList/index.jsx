@@ -54,12 +54,26 @@ const PokemonList = () => {
             <img src='/missigno.png' />
           </div>
         ) : (
-          favoritePokemon.map((pokemon) => <PokemonCard key={pokemon.id} id={pokemon.id} />)
+          <div className='list'>
+            {favoritePokemon
+              ?.filter(
+                (pokemon) =>
+                  pokemon.name.includes(filterValue.toLowerCase().trim()) ||
+                  pokemon.id.toString().indexOf(filterValue) > -1
+              )
+              .map((pokemon) => (
+                <PokemonCard key={pokemon.id} id={pokemon.id} />
+              ))}
+          </div>
         )
       ) : (
         <div className='list'>
           {pokemonList
-            ?.filter((pokemon) => pokemon.name.includes(filterValue.toLowerCase().trim()))
+            ?.filter(
+              (pokemon) =>
+                pokemon.name.includes(filterValue.toLowerCase().trim()) ||
+                pokemon.id.toString().indexOf(filterValue) > -1
+            )
             ?.map((pokemon) => (
               <PokemonCard key={pokemon.id} id={pokemon.id} />
             ))}
