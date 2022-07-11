@@ -1,9 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 const initialState = {
   pokemon: [],
   favorites: [],
 }
+
+const { REACT_APP_DB } = process.env
 
 export const pokemonSlice = createSlice({
   name: 'pokemon',
@@ -16,14 +19,20 @@ export const pokemonSlice = createSlice({
       state.favorites = payload
     },
     addFavorite: (state, { payload }) => {
-      localStorage.setItem(payload, payload)
       state.favorites.push(payload)
+      const wrapper = async () => {
+        await axios.put(`${REACT_APP_DB}/favorites/${payload}.json`, payload)
+      }
+      wrapper()
     },
     removeFavorite: (state, { payload }) => {
-      localStorage.removeItem(payload)
       const newFavorites = [...state.favorites]
       newFavorites.splice(state.favorites.indexOf(payload), 1)
       state.favorites = newFavorites
+      const wrapper = async () => {
+        await axios.delete(`${REACT_APP_DB}/favorites/${payload}.json`, payload)
+      }
+      wrapper()
     },
   },
 })

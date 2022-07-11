@@ -9,6 +9,7 @@ import PokemonPage from './pages/PokemonPage'
 
 const App = () => {
   const dispatch = useDispatch()
+  const { REACT_APP_DB } = process.env
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -18,8 +19,8 @@ const App = () => {
         allPokemon.push(pokemon.data)
       }
       dispatch(init(allPokemon))
-      const local = Object.keys(localStorage)
-      const favorites = local.map((entry) => Number(entry))
+      const favResult = await axios.get(`${REACT_APP_DB}/favorites.json`)
+      const favorites = Object.values(favResult.data)
       dispatch(loadFavorites(favorites))
     }
     fetchPokemon()
