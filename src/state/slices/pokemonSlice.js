@@ -1,3 +1,4 @@
+// comment to force netlify to build again and inject env variables
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
