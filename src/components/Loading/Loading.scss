@@ -6,7 +6,9 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-image: url('../../../public/loading-background.webp');
+  background-image: url('../../../public/loading-background.jpeg');
+  background-size: cover;
+  background-position: left;
   display: grid;
   place-content: center;
   .loading {
@@ -22,7 +24,7 @@
     .text {
       font-weight: bold;
       font-size: 1.2rem;
-      color: $ice;
+      color: $electric;
       text-align: center;
       margin-bottom: 1.6rem;
       line-height: 1.6rem;
