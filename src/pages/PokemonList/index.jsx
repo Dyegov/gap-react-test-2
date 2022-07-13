@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import PokemonCard from '../../components/PokemonCard'
 import Filter from '../../components/Filter'
 import './PokemonList.scss'
+import Loading from '../../components/Loading'
 
 const PokemonList = () => {
   const pokemonList = useSelector((state) => state.pokemon.pokemon)
@@ -19,7 +20,7 @@ const PokemonList = () => {
     setFilterValue('')
   }
 
-  if (pokemonList.length === 0) return <div>Loading...</div>
+  if (pokemonList.length === 0) return <Loading />
 
   return (
     <div className='listPage'>
