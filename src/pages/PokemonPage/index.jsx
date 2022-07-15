@@ -129,7 +129,9 @@ const PokemonPage = () => {
           <TypesList types={pokemon.types} />
         </div>
         <PokemonId id={pokemon.id} />
-        <img className='svg' src='/blob.svg' />
+        <div className='svg'>
+          <img src='/blob.svg' />
+        </div>
       </div>
       <PokemonImage
         src={pokemon?.sprites?.other['official-artwork']['front_default']}

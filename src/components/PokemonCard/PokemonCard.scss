@@ -8,14 +8,22 @@ a {
 .card {
   width: 10rem;
   padding: 0.8rem 0.8rem 0.2rem 0.8rem;
+  @media (min-width: 1025px) {
+    width: 13rem;
+    height: 8rem;
+  }
   border-radius: 1rem;
   position: relative;
   color: white;
   .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .name {
       font-size: 1.2rem;
+      @media (min-width: 1025px) {
+        font-size: 1.4rem;
+      }
       font-weight: bold;
     }
     .number {
@@ -32,6 +40,9 @@ a {
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
+      @media (min-width: 1025px) {
+        gap: 0.4rem;
+      }
       li {
         list-style: none;
         background-color: rgba(255, 255, 255, 0.2);
@@ -40,6 +51,10 @@ a {
         padding: 0.2rem 0;
         border-radius: 0.6rem;
         font-size: 0.8rem;
+        @media (min-width: 1025px) {
+          padding: 0.4rem 0;
+          font-size: 0.9rem;
+        }
         font-weight: bold;
       }
     }
@@ -59,5 +74,8 @@ a {
   right: 0px;
   bottom: 0px;
   left: 5rem;
+  @media (min-width: 1025px) {
+    left: 6rem;
+  }
   opacity: 0.2;
 }

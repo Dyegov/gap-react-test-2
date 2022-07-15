@@ -11,11 +11,22 @@ a {
   background-size: 50%;
   background-repeat: no-repeat;
   position: fixed;
-  top: -4rem;
+  top: -40rem;
   right: -20rem;
   bottom: 0rem;
   left: 14.1rem;
   opacity: 0.2;
+  @media (min-width: 1025px) {
+    background-size: 40%;
+    top: -10.3rem;
+    left: 74.8rem;
+  }
+  @media screen and (-webkit-min-device-pixel-ratio: 2),
+    screen and (max--moz-device-pixel-ratio: 2),
+    screen and (min-device-pixel-ratio: 2) {
+    top: -6.6rem;
+    left: 63.7rem;
+  }
 }
 
 .menu {
@@ -40,6 +51,10 @@ a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  @media (min-width: 1025px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
 }
 
 .empty {
@@ -61,6 +76,10 @@ a {
   background-color: $filter;
   margin-right: 1.7rem;
   margin-bottom: 0.6rem;
+  @media (min-width: 1025px) {
+    margin-right: 25rem;
+    margin-bottom: 2rem;
+  }
   border-radius: 50%;
   position: fixed;
   bottom: 0;
