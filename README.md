@@ -13,4 +13,5 @@
    Execute by running "npm run build"
 
 5. Deployed site:
-   You may visit the deployed site at https://jvalencia-react-test.netlify.app/
+   You may visit the deployed site at https://jvalencia-react-test-2.netlify.app/
+   - First load may take a while because the info for each of the 151 pokemon is being fetched. Afterwards reloads should be faster.
