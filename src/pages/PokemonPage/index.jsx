@@ -118,9 +118,13 @@ const PokemonPage = () => {
       <div className='menu'>
         <Back onClick={() => navigate(-1)} />
         {favorite ? (
-          <img className='favorite' src='/favorite-active.svg' onClick={toggleFavorite} />
+          <button onClick={toggleFavorite}>
+            <img className='favorite' src='/favorite-active.svg' />
+          </button>
         ) : (
-          <img className='favorite' src='/favorite.svg' onClick={toggleFavorite} />
+          <button onClick={toggleFavorite}>
+            <img className='favorite' src='/favorite.svg' />
+          </button>
         )}
       </div>
       <div className='header'>

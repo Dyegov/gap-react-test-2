@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types'
 
 const Back = ({ onClick }) => {
-  return <img className='back' src='/back.svg' onClick={onClick} />
+  return (
+    <button onClick={onClick}>
+      <img className='back' src='/back.svg' />
+    </button>
+  )
 }
 
 Back.propTypes = {

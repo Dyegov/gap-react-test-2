@@ -28,17 +28,13 @@ const PokemonList = () => {
         <div className='listPage'>
           <div className='menu'>
             {isFavoritesVisible ? (
-              <img
-                className='favorite'
-                src='/favorite-active.svg'
-                onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}
-              />
+              <button onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}>
+                <img className='favorite' src='/favorite-active.svg' />
+              </button>
             ) : (
-              <img
-                className='favorite'
-                src='/favorite.svg'
-                onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}
-              />
+              <button onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}>
+                <img className='favorite' src='/favorite.svg' />
+              </button>
             )}
           </div>
           <div className='title'>
@@ -83,7 +79,9 @@ const PokemonList = () => {
             </div>
           )}
           <div className='filter-icon'>
-            <img src='/filter.png' onClick={toggleFilter} />
+            <button onClick={toggleFilter}>
+              <img src='/filter.png' />
+            </button>
           </div>
         </div>
       </div>
