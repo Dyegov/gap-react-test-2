@@ -16,10 +16,13 @@ body {
     position: relative;
   }
   .menu {
-    padding: 2rem 5rem 1rem 5rem;
+    padding: 2rem 2rem 1rem 2rem;
     display: flex;
     justify-content: space-between;
     z-index: 10;
+    @media (min-width: 1025px) {
+      padding: 2rem 5rem 1rem 5rem;
+    }
     .back {
       width: 1.3rem;
       filter: brightness(0) invert(1);
@@ -41,13 +44,16 @@ body {
     justify-content: space-between;
     align-items: center;
     height: min-content;
-    padding-inline: 5rem;
+    padding-inline: 2rem;
+    @media (min-width: 1025px) {
+      padding-inline: 5rem;
+    }
     .name {
       font-size: 1.4rem;
       font-weight: bold;
       margin-bottom: 0.5rem;
       @media (min-width: 1025px) {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
     .types {
@@ -67,12 +73,15 @@ body {
         font-weight: bold;
         @media (min-width: 1025px) {
           padding: 0.4rem 0;
-          font-size: 0.9rem;
+          font-size: 1rem;
         }
       }
     }
     .number {
       font-weight: bold;
+      @media (min-width: 1025px) {
+        font-size: 1.2rem;
+      }
     }
     .svg {
       position: absolute;
@@ -93,8 +102,11 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 60%;
     z-index: 10;
+    @media (min-width: 1025px) {
+      width: 50%;
+    }
   }
   .info {
     margin-top: -2.4rem;
@@ -103,11 +115,13 @@ body {
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     padding-top: 2.6rem;
-    padding-inline: 5rem;
+    padding-inline: 2rem;
     @media (min-width: 1025px) {
+      margin-top: -3rem;
       border-top-left-radius: 2rem;
       border-top-right-radius: 2rem;
       height: 60%;
+      padding-inline: 5rem;
     }
     .navbar {
       display: flex;
@@ -143,24 +157,18 @@ body {
 .page::before {
   content: '';
   background-image: url('../../../public/pokeball.jpeg');
-  background-size: 70%;
+  background-size: 100%;
   background-repeat: no-repeat;
   position: absolute;
-  top: 8rem;
-  right: -8rem;
+  top: 9.5rem;
+  right: 4rem;
   bottom: 0px;
-  left: 14rem;
+  left: 12rem;
   @media (min-width: 1025px) {
-    top: 10rem;
+    background-size: 70%;
+    top: 12rem;
     left: 20rem;
-    right: -12rem;
-  }
-  @media screen and (-webkit-min-device-pixel-ratio: 2),
-    screen and (max--moz-device-pixel-ratio: 2),
-    screen and (min-device-pixel-ratio: 2) {
-    top: 10rem;
-    left: 18rem;
-    right: -7.8rem;
+    right: 0;
   }
   opacity: 0.2;
 }

@@ -23,65 +23,67 @@ const PokemonList = () => {
   if (pokemonList.length === 0) return <Loading />
 
   return (
-    <div className='listPage'>
-      <div className='menu'>
+    <div className='list-container'>
+      <div className='listPage'>
+        <div className='menu'>
+          {isFavoritesVisible ? (
+            <img
+              className='favorite'
+              src='/favorite-active.svg'
+              onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}
+            />
+          ) : (
+            <img
+              className='favorite'
+              src='/favorite.svg'
+              onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}
+            />
+          )}
+        </div>
+        <div className='title'>
+          {isFilterVisible ? (
+            <Filter onChange={(e) => setFilterValue(e.target.value)} />
+          ) : isFavoritesVisible ? (
+            <h2>Favorites</h2>
+          ) : (
+            <h2>Pokedex</h2>
+          )}
+        </div>
         {isFavoritesVisible ? (
-          <img
-            className='favorite'
-            src='/favorite-active.svg'
-            onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}
-          />
-        ) : (
-          <img
-            className='favorite'
-            src='/favorite.svg'
-            onClick={() => setIsFavoritesVisible(!isFavoritesVisible)}
-          />
-        )}
-      </div>
-      <div className='title'>
-        {isFilterVisible ? (
-          <Filter onChange={(e) => setFilterValue(e.target.value)} />
-        ) : isFavoritesVisible ? (
-          <h2>Favorites</h2>
-        ) : (
-          <h2>Pokedex</h2>
-        )}
-      </div>
-      {isFavoritesVisible ? (
-        favoritePokemon.length === 0 ? (
-          <div className='empty'>
-            <div>You have no favorite Pokemon yet!</div>
-            <img src='/missigno.png' />
-          </div>
+          favoritePokemon.length === 0 ? (
+            <div className='empty'>
+              <div>You have no favorite Pokemon yet!</div>
+              <img src='/missigno.png' />
+            </div>
+          ) : (
+            <div className='list'>
+              {favoritePokemon
+                ?.filter(
+                  (pokemon) =>
+                    pokemon.name.includes(filterValue.toLowerCase().trim()) ||
+                    pokemon.id.toString().indexOf(filterValue) > -1
+                )
+                .map((pokemon) => (
+                  <PokemonCard key={pokemon.id} id={pokemon.id} />
+                ))}
+            </div>
+          )
         ) : (
           <div className='list'>
-            {favoritePokemon
+            {pokemonList
               ?.filter(
                 (pokemon) =>
                   pokemon.name.includes(filterValue.toLowerCase().trim()) ||
                   pokemon.id.toString().indexOf(filterValue) > -1
               )
-              .map((pokemon) => (
+              ?.map((pokemon) => (
                 <PokemonCard key={pokemon.id} id={pokemon.id} />
               ))}
           </div>
-        )
-      ) : (
-        <div className='list'>
-          {pokemonList
-            ?.filter(
-              (pokemon) =>
-                pokemon.name.includes(filterValue.toLowerCase().trim()) ||
-                pokemon.id.toString().indexOf(filterValue) > -1
-            )
-            ?.map((pokemon) => (
-              <PokemonCard key={pokemon.id} id={pokemon.id} />
-            ))}
+        )}
+        <div className='filter-icon'>
+          <img src='/filter.png' onClick={toggleFilter} />
         </div>
-      )}
-      <div className='filter-icon'>
-        <img src='/filter.png' onClick={toggleFilter} />
       </div>
     </div>
   )

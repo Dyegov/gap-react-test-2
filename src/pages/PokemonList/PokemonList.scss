@@ -5,27 +5,21 @@ a {
   color: black;
 }
 
-.listPage::before {
+.list-container::before {
   content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-image: url('../../../public/pokeball.jpeg');
-  background-size: 50%;
+  background-size: 80%;
   background-repeat: no-repeat;
-  position: fixed;
-  top: -40rem;
-  right: -20rem;
-  bottom: 0rem;
-  left: 14.1rem;
+  background-position: right -7rem top -7.2rem;
   opacity: 0.2;
   @media (min-width: 1025px) {
-    background-size: 40%;
-    top: -10.3rem;
-    left: 74.8rem;
-  }
-  @media screen and (-webkit-min-device-pixel-ratio: 2),
-    screen and (max--moz-device-pixel-ratio: 2),
-    screen and (min-device-pixel-ratio: 2) {
-    top: -6.6rem;
-    left: 63.7rem;
+    background-size: 20%;
+    background-position: right 20.1rem top -9.3rem;
   }
 }
 
