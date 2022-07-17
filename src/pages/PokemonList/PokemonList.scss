@@ -5,7 +5,7 @@ a {
   color: black;
 }
 
-.list-container::before {
+.container::before {
   z-index: -1;
   content: '';
   position: absolute;
@@ -20,14 +20,20 @@ a {
   opacity: 0.2;
   @media (min-width: 1025px) {
     background-size: 20%;
-    background-position: right 20.1rem top -9.2rem;
+    background-position: right 18.3rem top -9.1rem;
   }
 }
 
 .menu {
-  margin-top: 2rem;
   display: flex;
   justify-content: right;
+  position: absolute;
+  top: 2rem;
+  right: 1.7rem;
+  @media (min-width: 1025px) {
+    top: 2.3rem;
+    right: 29.2rem;
+  }
   img {
     z-index: 10;
     width: 1.2rem;
@@ -73,7 +79,7 @@ a {
   margin-right: 1.7rem;
   margin-bottom: 0.6rem;
   @media (min-width: 1025px) {
-    margin-right: 25rem;
+    margin-right: 22rem;
     margin-bottom: 2rem;
   }
   border-radius: 50%;

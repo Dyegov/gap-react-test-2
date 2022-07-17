@@ -10,19 +10,21 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  padding-top: 4rem;
   @media (min-width: 1025px) {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     width: 40vw;
     height: 100vh;
     position: relative;
   }
   .menu {
-    padding: 2rem 2rem 1rem 2rem;
     display: flex;
+    width: 100%;
+    padding-inline: 2rem;
     justify-content: space-between;
     z-index: 10;
+    position: static;
     @media (min-width: 1025px) {
       padding: 2rem 5rem 1rem 5rem;
     }
@@ -48,6 +50,7 @@ body {
     align-items: center;
     height: min-content;
     padding-inline: 2rem;
+    margin-top: 2rem;
     @media (min-width: 1025px) {
       padding-inline: 5rem;
     }
@@ -55,7 +58,7 @@ body {
       font-family: 'Press Start 2P', cursive;
       font-size: 1.5rem;
       font-weight: bold;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1.2rem;
       @media (min-width: 1025px) {
         font-size: 2rem;
       }
@@ -125,7 +128,7 @@ body {
       margin-top: -3rem;
       border-top-left-radius: 2rem;
       border-top-right-radius: 2rem;
-      height: 60%;
+      height: 65%;
       padding-inline: 5rem;
     }
     .navbar {
@@ -165,13 +168,13 @@ body {
   background-size: 100%;
   background-repeat: no-repeat;
   position: absolute;
-  top: 9.5rem;
+  top: 12rem;
   right: 4rem;
   bottom: 0px;
   left: 12rem;
   @media (min-width: 1025px) {
     background-size: 70%;
-    top: 12rem;
+    top: 16rem;
     left: 20rem;
     right: 0;
   }
